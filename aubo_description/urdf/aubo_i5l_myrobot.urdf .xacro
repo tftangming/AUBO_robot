@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<robot  name="aubo_i5L" xmlns:xacro="http://www.ros.org/wiki/xacro"  >
+
+  <!-- common stuff -->
+  <xacro:include filename="$(find aubo_description)/urdf/common.gazebo.xacro" />
+  <!-- aubo_i5l -->
+  <xacro:include filename="$(find aubo_description)/urdf/aubo_i5l.urdf.xacro" />
+
+  <!-- arm -->
+  <!--  <xacro:aubo_i5l prefix="" joint_limited="false"/> -->
+
+  <link name="world" />
+
+  <joint name="world_joint" type="fixed">
+    <parent link="world" />
+    <child link = "base_link" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+
+
+  <link name="ee_link">
+    <collision>
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+    </visual>
+  </link>
+
+
+    <joint name="ee_fixed_joint" type="fixed">
+      <parent link="wrist3_Link" />
+      <child link = "ee_link" />
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 1.57" />
+    </joint>
+<!-- NEW gripper -->
+
+</robot>
+
